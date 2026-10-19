@@ -104,3 +104,16 @@ remains active.
 
 Do not keep BOOT held while resetting or reconnecting USB: GPIO0 is also the
 ESP32-S3 boot strap pin and holding it during reset selects download mode.
+
+## 致谢 / Acknowledgements
+
+本项目的早期设计思路与功能规划参考了
+[AuraNode](https://github.com/gtxzsxxk/auranode#%E5%8C%85%E8%A3%85%E6%B8%85%E5%8D%95--whats-in-the-box)。
+感谢 [@gtxzsxxk](https://github.com/gtxzsxxk) 开源 AuraNode 项目及其详细文档，
+为 SCD41 空气质量监测、Wi-Fi 配网、网页控制台和多页面显示等功能提供了重要启发。
+
+This project was inspired by the ideas and feature design of
+[AuraNode](https://github.com/gtxzsxxk/auranode). Special thanks to
+[@gtxzsxxk](https://github.com/gtxzsxxk) for publishing the project and its
+detailed documentation. This firmware is an independent implementation for the
+Waveshare ESP32-S3-LCD-1.47B hardware.
