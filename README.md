@@ -59,6 +59,9 @@ and feature models, STEP/STL exports, assembly checks, and exploded views.
 geometry helpers, historical repair/check scripts, and a FreeCAD macro.
 
 See the [model version guide](3d_models/README.md) before editing or printing.
+The [latest enclosure candidate](3d_models/盖板2.5mm_中壳加深_20261028/) uses
+2.5 mm front and rear cover plates, without a deep rear skirt; additional depth
+is carried by the middle shell while retaining the 20 mm PCB-to-PCB gap.
 The outward-facing SCD41 rear cover is an **unfinished preview**: enclosure
 thickness and actual cable/connector clearance still need review. Modeling
 scripts retain their original local paths and may overwrite models; read the

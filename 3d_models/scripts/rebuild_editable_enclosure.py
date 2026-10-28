@@ -14,9 +14,13 @@ import FreeCAD as App
 import Part
 import Sketcher
 
-ROOT = Path("/Users/bytedance/Downloads/ESP32-S3-LCD-1.47B_20260204 (1)")
+_repo_models = Path(__file__).resolve().parent.parent
+ROOT = Path(os.environ.get("ESP32_MODEL_ROOT", str(_repo_models if
+    (_repo_models / "ESP32-S3-LCD-1.47B_紧凑双层外壳.FCStd").exists() else
+    Path.home() / "Downloads/ESP32-S3-LCD-1.47B_20260204 (1)")))
 SOURCE = ROOT / "ESP32-S3-LCD-1.47B_紧凑双层外壳.FCStd"
-RECOVERY = Path("/Users/bytedance/Documents/New project/.cad-recovery")
+RECOVERY = Path(os.environ.get("ESP32_CAD_STAGE_ROOT", str(ROOT / ".cad-recovery")))
+RECOVERY.mkdir(parents=True, exist_ok=True)
 STAGE = Path(tempfile.mkdtemp(prefix="editable-parametric-", dir=RECOVERY))
 ZSHIFT = 4.250478785792438
 ZTOP = 25 + ZSHIFT

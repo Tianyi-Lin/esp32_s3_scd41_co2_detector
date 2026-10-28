@@ -10,7 +10,7 @@ import FreeCAD as App
 import Part
 import Sketcher
 
-sys.path.insert(0, "/Users/bytedance/Documents/New project")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import rebuild_editable_enclosure as base
 
 STAGE = base.STAGE
