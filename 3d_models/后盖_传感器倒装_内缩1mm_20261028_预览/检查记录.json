@@ -1,0 +1,65 @@
+{
+  "preview": true,
+  "package_height_mm": 6.28,
+  "membrane_recess_mm": 1.0000010800000023,
+  "outward_cover_extension_mm": 4.28,
+  "cover_floor_thickness_mm": 2,
+  "wall_thickness_mm": 2.2,
+  "sensor_window_mm": [
+    10.7,
+    10.7
+  ],
+  "window_corner_radius_mm": 0.7,
+  "minimum_sensor_body_to_cover_clearance_mm": 1.4554451772306054,
+  "sensor_mount_pitch_xy_mm": [
+    20,
+    18
+  ],
+  "sensor_support_height_mm": 5.28,
+  "pcb_z_range_mm": [
+    3,
+    4.2
+  ],
+  "esp32_to_co2_pcb_gap_mm": 19.999999999999996,
+  "cover_exterior_z_mm": -4.28,
+  "white_surface_z_mm": -3.2799989200000006,
+  "auxiliary_vent_holes": 12,
+  "collision_overlap_mm3": {
+    "RearShell": {
+      "CO2SensorPCB": 0.0,
+      "CO2SensorCan": 0.0,
+      "CO2SensorConnectors": 0.0
+    },
+    "RemovableBottomCover": {
+      "CO2SensorPCB": 0.0,
+      "CO2SensorCan": 0.0,
+      "CO2SensorConnectors": 0.0
+    },
+    "ESP32BoardAssembly": {
+      "CO2SensorPCB": 0.0,
+      "CO2SensorCan": 0.0,
+      "CO2SensorConnectors": 0.0
+    },
+    "HeaderPinsKeepout": {
+      "CO2SensorPCB": 0.0,
+      "CO2SensorCan": 0.0,
+      "CO2SensorConnectors": 0.0
+    },
+    "FrontBezel": {
+      "CO2SensorPCB": 0.0,
+      "CO2SensorCan": 0.0,
+      "CO2SensorConnectors": 0.0
+    }
+  },
+  "single_valid_cover_solid": true,
+  "extended_geometry_check": "PASS",
+  "mesh_closed": true,
+  "mesh_components": 1,
+  "mesh_self_intersections": false,
+  "mesh_non_manifold": false,
+  "mesh_inconsistent_faces": 0,
+  "mesh_facets": 36096,
+  "source_files_unchanged": true,
+  "assembly_reopen": "PASS",
+  "native_reopen": "PASS"
+}

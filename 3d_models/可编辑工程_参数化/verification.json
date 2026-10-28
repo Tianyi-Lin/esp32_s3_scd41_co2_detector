@@ -1,0 +1,164 @@
+[
+  {
+    "label": "candidate_下盖_参数化",
+    "source": "RemovableBottomCover",
+    "volume_new": 2714.3654624966694,
+    "volume_source": 2714.3654624966684,
+    "removed": 0.0,
+    "added": 0.0,
+    "bbox_difference": {
+      "XMin": 0.0,
+      "XMax": 0.0,
+      "YMin": 0.0,
+      "YMax": 0.0,
+      "ZMin": 0.0,
+      "ZMax": 0.0
+    },
+    "sketches": 6,
+    "native_features": 6,
+    "all_sketches_fully_constrained": true,
+    "extended_check": "PASS",
+    "editing_tests": [
+      {
+        "parameter": "SensorHoleDiameter",
+        "change": 0.1,
+        "volume_change": -2.8651325000741963,
+        "symmetric_difference_volume": 2.8651325000738943
+      },
+      {
+        "parameter": "SensorSpacingX",
+        "change": 0.1,
+        "volume_change": 0.0,
+        "symmetric_difference_volume": 6.647825671221981
+      },
+      {
+        "parameter": "OuterLength",
+        "change": 0.1,
+        "volume_change": 6.780000000000655,
+        "symmetric_difference_volume": 6.780000000000086
+      }
+    ],
+    "reopen_valid": true,
+    "file": "/Users/bytedance/Documents/New project/.cad-recovery/editable-parametric-r36_lnwh/下盖_参数化.FCStd"
+  },
+  {
+    "label": "candidate_中间外壳_参数化",
+    "source": "RearShell",
+    "volume_new": 11519.511321667087,
+    "volume_source": 11519.511321666901,
+    "removed": 0.0,
+    "added": 0.0,
+    "bbox_difference": {
+      "XMin": -3.552713678800501e-15,
+      "XMax": 0.0,
+      "YMin": 1.0000000116860974e-07,
+      "YMax": 7.105427357601002e-15,
+      "ZMin": 9.999999983634211e-08,
+      "ZMax": -1.0000001182675078e-07
+    },
+    "sketches": 19,
+    "native_features": 20,
+    "all_sketches_fully_constrained": true,
+    "extended_check": "PASS",
+    "editing_tests": [
+      {
+        "parameter": "BossHoleDiameter",
+        "change": 0.1,
+        "volume_change": -5.564388908049295,
+        "symmetric_difference_volume": 5.5643889080382
+      },
+      {
+        "parameter": "VentPitch",
+        "change": 0.05,
+        "volume_change": 5.4569682106375694e-12,
+        "symmetric_difference_volume": 61.57950504095405
+      },
+      {
+        "parameter": "TopZ",
+        "change": 0.1,
+        "volume_change": 39.062811101208354,
+        "symmetric_difference_volume": 41.441524856618585
+      },
+      {
+        "parameter": "BossLeftX",
+        "change": 0.05,
+        "volume_change": 1.2732925824820995e-11,
+        "symmetric_difference_volume": 3.048123445017571
+      },
+      {
+        "parameter": "FlatOffset",
+        "change": 0.05,
+        "volume_change": 21.907946301287666,
+        "symmetric_difference_volume": 21.907946301288842
+      },
+      {
+        "parameter": "Wall",
+        "change": 0.05,
+        "volume_change": 118.21053867957198,
+        "symmetric_difference_volume": 118.21053867954258
+      },
+      {
+        "parameter": "HeaderWidth",
+        "change": 0.1,
+        "volume_change": -5.053800000001502,
+        "symmetric_difference_volume": 5.053799999999928
+      }
+    ],
+    "reopen_valid": true,
+    "file": "/Users/bytedance/Documents/New project/.cad-recovery/editable-parametric-r36_lnwh/中间外壳_参数化.FCStd"
+  },
+  {
+    "label": "candidate_上盖_参数化",
+    "source": "FrontBezel",
+    "volume_new": 2454.0836689155576,
+    "volume_source": 2454.0900730333847,
+    "removed": 2454.0830694856136,
+    "added": 0.0,
+    "bbox_difference": {
+      "XMin": 0.0,
+      "XMax": 0.0,
+      "YMin": 0.0,
+      "YMax": 0.0,
+      "ZMin": 0.0,
+      "ZMax": 2.1316282072803006e-14
+    },
+    "sketches": 5,
+    "native_features": 5,
+    "all_sketches_fully_constrained": true,
+    "comparison_method": "Matched analytic cylinders and bounding box; bidirectional tessellation samples to exact opposite CAD surface, tolerance 0.001 mm. Boolean differences are unreliable for the inherited C0 fillet.",
+    "surface_distances": [
+      {
+        "samples": 3090,
+        "maximum_mm": 0.0007186114673897514
+      },
+      {
+        "samples": 3098,
+        "maximum_mm": 0.0007117027782091723
+      }
+    ],
+    "boolean_difference_valid": false,
+    "extended_check": "BOP check found the following errors:\nError in Edge: BOPAlgo GeomAbs_C0\nError in Edge: BOPAlgo GeomAbs_C0\nError in Face: BOPAlgo GeomAbs_C0\n",
+    "editing_tests": [
+      {
+        "parameter": "HoleDiameter",
+        "change": 0.1,
+        "volume_change": -3.058340450410469,
+        "symmetric_difference_volume": 3.0583404482696306
+      },
+      {
+        "parameter": "WindowWidth",
+        "change": 0.05,
+        "volume_change": -2.5567936011248094,
+        "symmetric_difference_volume": 2452.805085684765
+      },
+      {
+        "parameter": "OuterLength",
+        "change": 0.1,
+        "volume_change": 10.170000356593391,
+        "symmetric_difference_volume": 10.170000000000382
+      }
+    ],
+    "reopen_valid": true,
+    "file": "/Users/bytedance/Documents/New project/.cad-recovery/editable-parametric-r36_lnwh/上盖_参数化.FCStd"
+  }
+]

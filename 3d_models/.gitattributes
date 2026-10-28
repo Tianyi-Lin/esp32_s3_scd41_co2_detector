@@ -1,0 +1,10 @@
+# Preserve CAD and mesh exports byte-for-byte, including text-based STEP/STL.
+*.FCStd binary
+*.step binary
+*.STEP binary
+*.stp binary
+*.STP binary
+*.stl binary
+*.STL binary
+*.dwg binary
+*.pdf binary

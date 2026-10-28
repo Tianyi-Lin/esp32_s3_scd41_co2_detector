@@ -1,0 +1,146 @@
+[
+  {
+    "part": "bottom",
+    "filename": "下盖_草图编辑.FCStd",
+    "sha256": "7c47c2d1ac08df447e600184d748e79e2c739fffba22cba7368a25aec0d9ef6b",
+    "single_valid_solid": true,
+    "extended_geometry_check": "PASS",
+    "all_feature_extended_checks": "PASS",
+    "native_features_checked": 7,
+    "volume_mm3": 2714.365462496669,
+    "tests": [
+      {
+        "master_sketch": "SensorBossSketch",
+        "hole_centers_tested": 4,
+        "changed_axes": [
+          "X",
+          "Y"
+        ],
+        "result": "PASS"
+      },
+      {
+        "master_sketch": "CoverHolesSketch",
+        "hole_centers_tested": 4,
+        "changed_axes": [
+          "X",
+          "Y"
+        ],
+        "result": "PASS"
+      }
+    ],
+    "mesh": {
+      "facets": 29432,
+      "linear_deflection_mm": 0.01,
+      "angular_deflection_radians": 0.1,
+      "closed": true,
+      "components": 1,
+      "non_manifold": false,
+      "self_intersections": false,
+      "non_uniform_oriented_facets": 0,
+      "signed_volume_mm3": 2714.3955078125
+    },
+    "forced_recompute_after_reopen": "PASS"
+  },
+  {
+    "part": "middle",
+    "filename": "中间外壳_草图编辑.FCStd",
+    "sha256": "c7f905160db3a83a74762def9d8245381752cc0a52dac4f93b4c66ded4c85f13",
+    "single_valid_solid": true,
+    "extended_geometry_check": "PASS",
+    "all_feature_extended_checks": "PASS",
+    "native_features_checked": 21,
+    "volume_mm3": 11519.511321667103,
+    "tests": [
+      {
+        "master_sketch": "BossSketch",
+        "hole_centers_tested": 4,
+        "changed_axes": [
+          "X",
+          "Y"
+        ],
+        "result": "PASS"
+      },
+      {
+        "master_sketch": "ColumnSketch",
+        "hole_centers_tested": 4,
+        "changed_axes": [
+          "X",
+          "Y"
+        ],
+        "result": "PASS"
+      },
+      {
+        "master_sketch": "GuideSketchNegative",
+        "hole_centers_tested": 1,
+        "changed_axes": [
+          "X",
+          "Y"
+        ],
+        "result": "PASS"
+      },
+      {
+        "master_sketch": "GuideSketchPositive",
+        "hole_centers_tested": 1,
+        "changed_axes": [
+          "X",
+          "Y"
+        ],
+        "result": "PASS"
+      }
+    ],
+    "mesh": {
+      "facets": 49540,
+      "linear_deflection_mm": 0.01,
+      "angular_deflection_radians": 0.1,
+      "closed": true,
+      "components": 1,
+      "non_manifold": false,
+      "self_intersections": false,
+      "non_uniform_oriented_facets": 0,
+      "signed_volume_mm3": 11518.140625
+    },
+    "forced_recompute_after_reopen": "PASS"
+  },
+  {
+    "part": "top",
+    "filename": "上盖_草图编辑.FCStd",
+    "sha256": "ebdf123024966ebfc2f57f418b719622a88f7958d6c08ae02cde4b2c83a65ebf",
+    "single_valid_solid": true,
+    "extended_geometry_check": "PASS",
+    "all_feature_extended_checks": "PASS",
+    "native_features_checked": 12,
+    "volume_mm3": 2454.0828504920732,
+    "tests": [
+      {
+        "master_sketch": "ThroughHolesSketch",
+        "hole_centers_tested": 4,
+        "changed_axes": [
+          "X",
+          "Y"
+        ],
+        "result": "PASS"
+      },
+      {
+        "fillet_radius_test_mm": 0.45,
+        "result": "PASS",
+        "restored_radius_mm": 0.4
+      }
+    ],
+    "mesh": {
+      "facets": 328684,
+      "linear_deflection_mm": 0.001,
+      "angular_deflection_radians": 0.03,
+      "coarse_mesh_note": "The coarse 0.01 mm / 0.1 rad test triggered a mesh self-intersection/non-manifold assertion. Use the verified fine settings and recheck any new export; native BOP geometry passes.",
+      "closed": true,
+      "components": 1,
+      "non_manifold": false,
+      "self_intersections": false,
+      "non_uniform_oriented_facets": 0,
+      "signed_volume_mm3": 2453.856201171875
+    },
+    "forced_recompute_after_reopen": "PASS",
+    "repair_method": "Native half-pockets, live sub-shape binder, two native R0.4 fillets, native Boolean fuse without surface unification. Single final solid; no static replacement.",
+    "max_bidirectional_sampled_surface_difference_mm": 0.000444296517019515,
+    "reference_comparison": "Previous direct-sketch top-cover file; geometry source retained for user dimensions."
+  }
+]

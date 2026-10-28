@@ -1,0 +1,142 @@
+[
+  {
+    "label": "candidate_下盖_草图编辑",
+    "source": "RemovableBottomCover",
+    "volume_new": 2714.3654624966703,
+    "volume_source": 2714.3654624966684,
+    "removed": 0.0,
+    "added": 0.0,
+    "bbox_difference": {
+      "XMin": -3.552713678800501e-15,
+      "XMax": 3.552713678800501e-15,
+      "YMin": -3.552713678800501e-15,
+      "YMax": 3.552713678800501e-15,
+      "ZMin": 0.0,
+      "ZMax": 0.0
+    },
+    "sketches": 6,
+    "native_features": 6,
+    "all_sketches_fully_constrained": true,
+    "extended_check": "PASS",
+    "direct_sketch_edit_tests": [
+      {
+        "sketch": "SensorHolesSketch",
+        "dimension": "Diameter",
+        "change_mm": 0.1
+      },
+      {
+        "sketch": "SensorHolesSketch",
+        "dimension": "Hole1_X",
+        "change_mm": 0.05
+      },
+      {
+        "sketch": "OuterProfile",
+        "dimension": "Length",
+        "change_mm": 0.1
+      }
+    ],
+    "spreadsheet_drivers": 0,
+    "expressions": 0,
+    "file": "/Users/bytedance/Documents/New project/.cad-recovery/editable-parametric-3tbr8c9b/下盖_草图编辑.FCStd",
+    "reopen_valid": true
+  },
+  {
+    "label": "candidate_中间外壳_草图编辑",
+    "source": "RearShell",
+    "volume_new": 11519.511321667109,
+    "volume_source": 11519.511321666901,
+    "removed": 0.0,
+    "added": 0.0,
+    "bbox_difference": {
+      "XMin": -3.552713678800501e-15,
+      "XMax": 3.552713678800501e-15,
+      "YMin": 9.999999761589606e-08,
+      "YMax": 7.105427357601002e-15,
+      "ZMin": 9.999999983634211e-08,
+      "ZMax": -1.0000001182675078e-07
+    },
+    "sketches": 19,
+    "native_features": 20,
+    "all_sketches_fully_constrained": true,
+    "extended_check": "PASS",
+    "direct_sketch_edit_tests": [
+      {
+        "sketch": "BossHolesSketch",
+        "dimension": "Diameter",
+        "change_mm": 0.1
+      },
+      {
+        "sketch": "BossHolesSketch",
+        "dimension": "Hole1_X",
+        "change_mm": 0.05
+      },
+      {
+        "sketch": "HeaderSketch",
+        "dimension": "Width",
+        "change_mm": 0.1
+      },
+      {
+        "sketch": "VentSketchPositive",
+        "dimension": "StraightLength",
+        "change_mm": 0.1
+      }
+    ],
+    "spreadsheet_drivers": 0,
+    "expressions": 0,
+    "file": "/Users/bytedance/Documents/New project/.cad-recovery/editable-parametric-3tbr8c9b/中间外壳_草图编辑.FCStd",
+    "reopen_valid": true
+  },
+  {
+    "label": "candidate_上盖_草图编辑",
+    "source": "FrontBezel",
+    "volume_new": 2454.0836689155435,
+    "volume_source": 2454.0900730333847,
+    "removed": 2454.0830663719157,
+    "added": 0.0,
+    "bbox_difference": {
+      "XMin": 0.0,
+      "XMax": 0.0,
+      "YMin": 0.0,
+      "YMax": 0.0,
+      "ZMin": 0.0,
+      "ZMax": 1.4210854715202004e-14
+    },
+    "sketches": 5,
+    "native_features": 5,
+    "all_sketches_fully_constrained": true,
+    "comparison_method": "Matched analytic cylinders and bounding box; bidirectional tessellation samples to exact opposite CAD surface, tolerance 0.001 mm. Boolean differences are unreliable for the inherited C0 fillet.",
+    "surface_distances": [
+      {
+        "samples": 3101,
+        "maximum_mm": 0.0007186114673897514
+      },
+      {
+        "samples": 3098,
+        "maximum_mm": 0.0007117027782116734
+      }
+    ],
+    "boolean_difference_valid": false,
+    "extended_check": "BOP check found the following errors:\nError in Edge: BOPAlgo GeomAbs_C0\nError in Edge: BOPAlgo GeomAbs_C0\nError in Face: BOPAlgo GeomAbs_C0\n",
+    "direct_sketch_edit_tests": [
+      {
+        "sketch": "ThroughHolesSketch",
+        "dimension": "Diameter",
+        "change_mm": 0.1
+      },
+      {
+        "sketch": "WindowSection1",
+        "dimension": "Width",
+        "change_mm": 0.05
+      },
+      {
+        "sketch": "OuterProfile",
+        "dimension": "Length",
+        "change_mm": 0.1
+      }
+    ],
+    "spreadsheet_drivers": 0,
+    "expressions": 0,
+    "file": "/Users/bytedance/Documents/New project/.cad-recovery/editable-parametric-3tbr8c9b/上盖_草图编辑.FCStd",
+    "reopen_valid": true
+  }
+]

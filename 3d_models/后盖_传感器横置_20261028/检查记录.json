@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-28",
+  "old_mount_pitch_xy_mm": [
+    18,
+    20
+  ],
+  "new_mount_pitch_xy_mm": [
+    20,
+    18
+  ],
+  "sensor_size_xy_mm": [
+    25.4,
+    22.86
+  ],
+  "shell_long_axis": "X",
+  "sensor_long_axis": "X",
+  "mount_centers_xy_mm": [
+    [
+      -10.0,
+      -9.0
+    ],
+    [
+      -10.0,
+      9.0
+    ],
+    [
+      10.0,
+      -9.0
+    ],
+    [
+      10.0,
+      9.0
+    ]
+  ],
+  "boss_diameter_mm": 5,
+  "through_hole_diameter_mm": 2.8,
+  "counterbore_diameter_mm": 5.1,
+  "counterbore_depth_mm": 1.4,
+  "sensor_support_z_mm": 3,
+  "minimum_vent_ligament_mm": 1.7000000000000002,
+  "external_corner_mounts_unchanged": true,
+  "external_dimensions_unchanged": true,
+  "ventilation_holes_unchanged": true,
+  "installation_heights_unchanged": true,
+  "native_and_step_extended_geometry_check": "PASS",
+  "native_reopen_check": "PASS",
+  "stl_mesh": {
+    "facets": 58656,
+    "closed": true,
+    "components": 1,
+    "non_manifold": false,
+    "self_intersections": false,
+    "inconsistent_orientation": 0
+  },
+  "assembly_collision_check": {
+    "RearShell": {
+      "overlap_mm3": 0.0,
+      "minimum_distance_mm": 3.3199999999999985
+    },
+    "RemovableBottomCover": {
+      "overlap_mm3": 0.0,
+      "minimum_distance_mm": 0.0
+    },
+    "ESP32BoardAssembly": {
+      "overlap_mm3": 0.0,
+      "minimum_distance_mm": 10.99258365290201
+    },
+    "HeaderPinsKeepout": {
+      "overlap_mm3": 0.0,
+      "minimum_distance_mm": 6.528905943039942
+    }
+  },
+  "source_files_unchanged": true,
+  "files": [
+    "后盖_传感器横置_20x18mm.FCStd",
+    "后盖_传感器横置_20x18mm.step",
+    "后盖_传感器横置_20x18mm.stl",
+    "装配检查_传感器横置.FCStd"
+  ]
+}
