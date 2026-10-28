@@ -27,6 +27,8 @@ UPPER_LIFT = PCB_CONTACT_Z - 3.0
 MIDDLE_BASE = COVER_T + .05
 MOUNTS = [(x, y) for x in (-10., 10.) for y in (-9., 9.)]
 from shift_corner_mounts import CORNERS, apply_corner_positions, stamp_corner_parameters
+from resize_sensor_window import (WINDOW_LENGTH, WINDOW_WIDTH, WINDOW_RADIUS, CENTER_X,
+    CENTER_Y, stamp_window_parameters)
 TOL = 1e-6
 BUTTON_PROJECTION = 1.5
 FOOT_HEIGHT = 2.0
@@ -88,8 +90,8 @@ def make_back(DirectModel, detach):
     m.circles(sk, CORNERS+MOUNTS, 5.1)
     m.extrude(sk, 'Counterbores', '外底面沉孔 深1.4', 1.4,
               pocket=True, reversed=True)
-    sk = m.sketch('SensorWindowSketch', 'SCD41 外露窗口 10.7×10.7 R0.7', PCB_CONTACT_Z)
-    m.rounded(sk, 10.7, 10.7, .7)
+    sk = m.sketch('SensorWindowSketch', 'SCD41 实际穿板外形每边+0.3mm', PCB_CONTACT_Z)
+    m.rounded(sk, WINDOW_LENGTH, WINDOW_WIDTH, WINDOW_RADIUS, CENTER_X, CENTER_Y)
     m.extrude(sk, 'SensorWindow', '传感器外露窗口（贯穿）', 12,
               pocket=True, through=True)
     vents = [(sx*9., y) for sx in (-1, 1) for y in (-3., 0., 3.)]
@@ -289,11 +291,13 @@ def validate_assembly(doc):
         collisions[a+' / '+b] = overlap
         assert overlap < 1e-5, (a, b, overlap)
     minimum_can_clearance = doc.CO2SensorCan.Shape.distToShape(doc.RemovableBottomCover.Shape)[0]
-    assert minimum_can_clearance > .2
+    assert abs(minimum_can_clearance-.3) < .002
     p = doc.DesignParameters
     return dict(esp32_to_co2_pcb_gap_mm=gap, membrane_recess_mm=recess,
         sensor_pcb_z_mm=[pcb.BoundBox.ZMin, pcb.BoundBox.ZMax],
         sensor_to_cover_min_clearance_mm=minimum_can_clearance,
+        sensor_window_size_xy_mm=[WINDOW_LENGTH, WINDOW_WIDTH],
+        sensor_window_corner_radius_mm=WINDOW_RADIUS, sensor_window_side_gap_mm=.3,
         cover_base_thickness_mm=COVER_T, front_thickness_mm=COVER_T,
         back_skirt_height_mm=0, upper_assembly_lift_mm=UPPER_LIFT,
         middle_base_z_mm=doc.RearShell.Shape.BoundBox.ZMin,
@@ -367,6 +371,7 @@ def make_assembly(source, shapes, folder):
         '按钮突出1.5mm、侧脚高2mm，离桌间隙0.5mm。实际插头和弯线空间尚待实物确认。')
     stamp_screen_parameters(doc)
     stamp_corner_parameters(doc)
+    stamp_window_parameters(doc)
     report = validate_assembly(doc)
     from apply_button_projection15 import export_button_print
     report['button_print'] = export_button_print(doc, folder/'打印文件')

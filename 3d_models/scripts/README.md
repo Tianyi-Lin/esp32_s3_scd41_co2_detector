@@ -11,6 +11,7 @@
 | `fix_co2_connector_layout.py` | 将当前 CO₂ PCB 的两个简化插座改到长边方向左右两端；不旋转 PCB、不改变孔位和打印件；保留原装配显示外观并检查碰撞，输出到独立暂存目录。 |
 | `apply_button_projection15.py` | 当前按钮突出1.5mm、脚钉2mm修正；保留内侧接触和限位，重导出中间件工程/STEP/STL和按钮STEP/STL（打印2件），验证0.5mm离桌间隙和0.8mm导向行程。 |
 | `shift_corner_mounts.py` | 四角孔沿45°各外移0.3mm，三件孔位/沉孔及中间件柱体和八段斜切面同步；外形45.4×33.9/R4不变，保留按钮、脚钉和电子件，导出配套工程与STEP/STL。 |
+| `resize_sensor_window.py` | 后盖中央窗口按真实SCD41在后盖内表面处的壳体截面每边+0.3mm，约8.422×8.422/R1.704；不按10.1mm远端凸缘放大，保持可编辑草图及1mm内缩，并检查实体间隙和STEP/STL。 |
 | `design_inverted_scd41_cover.py` | 最新倒装后盖预览：传感器朝外、表面内缩约 1 mm，导出独立后盖及倒装装配。方案尚未定稿。 |
 | `redesign_bottom_sensor_landscape.py` | 未倒装的横置后盖：长边平行外壳长边，安装孔距 X20 / Y18。 |
 | `create_compact_stacked_enclosure.py` | 紧凑双层外壳的整机生成入口，调用本目录多个几何辅助模块。 |
