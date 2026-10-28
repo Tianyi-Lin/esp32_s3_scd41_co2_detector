@@ -126,7 +126,8 @@ def extend_hemispherical_buttons(doc, projection=1.0):
     p = doc.DesignParameters
     previous = p.ButtonOuterProjection.Value
     delta = projection - previous
-    assert abs(previous-.5) < TOL and abs(delta-.5) < TOL
+    assert .5-TOL <= previous < projection <= 1.5+TOL
+    assert abs(delta-.5) < TOL, "Only the requested 0.5 mm outer extension is supported"
     wall = p.OuterWidth.Value / 2
     for side, name in ((1, "ButtonPlungerPositive"), (-1, "ButtonPlungerNegative")):
         obj = doc.getObject(name)
@@ -173,7 +174,8 @@ def extend_hemispherical_buttons(doc, projection=1.0):
     p.ButtonOuterProjection = projection
     p.ButtonTipEquatorRecess = p.ButtonTipSphereRadius.Value - projection
     p.HorizontalButtonGroundClearance = p.HorizontalFootHeight.Value - projection
-    p.Layout = p.Layout.replace(
-        "外端改为R1.5半球，赤道收进壳面1mm，最高点外露0.5mm，离桌面1mm。",
-        "外端改为R1.5半球，赤道收进壳面0.5mm，最高点外露1mm，离桌面0.5mm。")
+    p.Layout += (" 按钮更新：R1.5半球最高点外露%gmm，半球赤道内缩%gmm；"
+                 "侧脚高度%gmm，按钮离支撑平面%gmm。" % (
+                     projection, p.ButtonTipEquatorRecess.Value,
+                     p.HorizontalFootHeight.Value, p.HorizontalButtonGroundClearance.Value))
     doc.recompute()

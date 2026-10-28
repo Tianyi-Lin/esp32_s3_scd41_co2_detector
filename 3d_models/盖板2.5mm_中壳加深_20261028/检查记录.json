@@ -27,7 +27,7 @@
   },
   "RearShell": {
     "native": "中间外壳_加深_草图编辑.FCStd",
-    "volume_mm3": 12996.085581292786,
+    "volume_mm3": 13021.218322521501,
     "mesh_facets": 161228,
     "mesh_closed": true,
     "mesh_components": 1,
@@ -42,7 +42,7 @@
     "esp32_to_co2_pcb_gap_mm": 20.0,
     "membrane_recess_mm": 1.0000010799999994,
     "sensor_pcb_z_mm": [
-      7.2799999999999985,
+      7.28,
       8.480000000000002
     ],
     "sensor_to_cover_min_clearance_mm": 1.4379954279097056,
@@ -60,8 +60,21 @@
     ],
     "connector_model_count": 2,
     "connector_model_arrangement": "Left/right along long X axis; simplified placeholders",
-    "connector_centers_mm": [[-10.85, 0, 6.03], [10.85, 0, 6.03]],
-    "connector_layout_check": "接线插座布局检查.json",
+    "connector_centers_mm": [
+      [
+        -10.850000000000003,
+        5.172705773891683e-16,
+        6.030000000000001
+      ],
+      [
+        10.850000000000003,
+        5.706146266204071e-16,
+        6.030000000000001
+      ]
+    ],
+    "button_outer_projection_mm": 1.5,
+    "horizontal_foot_height_mm": 2.0,
+    "horizontal_button_ground_clearance_mm": 0.5,
     "corner_mount_coaxiality": "PASS",
     "co2_mount_coaxiality": "PASS",
     "screen_lower_aperture_mm": [
@@ -107,5 +120,20 @@
     },
     "assembly_reopen": "PASS"
   },
-  "source_files_unchanged": true
+  "source_files_unchanged": true,
+  "ButtonPlunger": {
+    "step": "按键顶杆_突出1.5mm_打印2件.step",
+    "stl": "按键顶杆_突出1.5mm_打印2件.stl",
+    "quantity": 2,
+    "print_orientation": "collar base Z=0, hemispherical tip upward",
+    "volume_mm3": 71.36096296702681,
+    "mesh_facets": 5006,
+    "mesh_closed": true,
+    "mesh_components": 1,
+    "mesh_non_manifold": false,
+    "mesh_self_intersections": false,
+    "mesh_inconsistent_faces": 0,
+    "step_roundtrip": "PASS",
+    "symmetric_buttons_identical": "PASS"
+  }
 }

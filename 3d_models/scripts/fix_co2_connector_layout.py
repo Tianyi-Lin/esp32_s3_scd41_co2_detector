@@ -79,14 +79,17 @@ def correct_connectors(doc):
                 connector_z_mm=[z, z+height], plugged_connector_and_wire_space_validated=False)
 
 
-def restore_appearance(reference, generated, destination):
+def restore_appearance(reference, generated, destination, modified_names=None):
     """Restore views and untouched BREP payloads normalized by FreeCADCmd."""
     with zipfile.ZipFile(reference) as original, zipfile.ZipFile(generated) as updated:
         gui = original.read("GuiDocument.xml")
         resources = {e.get("file") for e in ET.fromstring(gui).iter() if e.get("file")}
         assert not resources & set(updated.namelist())
+        if modified_names is None:
+            modified_names = {"CO2SensorConnectors", "CO2SensorEnvelope"}
+        modified_breps = {name+".Shape.brp" for name in modified_names}
         unchanged_breps = {name for name in original.namelist() if name.endswith(".brp")
-            and name not in {"CO2SensorConnectors.Shape.brp", "CO2SensorEnvelope.Shape.brp"}}
+            and name not in modified_breps}
         assert unchanged_breps <= set(updated.namelist())
         with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED) as result:
             for item in updated.infolist():

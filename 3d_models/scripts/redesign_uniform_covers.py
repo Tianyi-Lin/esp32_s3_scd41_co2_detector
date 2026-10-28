@@ -28,6 +28,8 @@ MIDDLE_BASE = COVER_T + .05
 MOUNTS = [(x, y) for x in (-10., 10.) for y in (-9., 9.)]
 CORNERS = [(x, y) for x in (-18.86, 18.86) for y in (-12.82, 12.82)]
 TOL = 1e-6
+BUTTON_PROJECTION = 1.5
+FOOT_HEIGHT = 2.0
 
 
 def clean(shape):
@@ -165,6 +167,7 @@ def make_middle(path):
         name = 'Hole%d_Y' % hole
         sk.setDatum(index(sk, name), App.Units.Quantity(sk.getDatum(index(sk, name)).Value-UPPER_LIFT))
     doc.OuterPad.Label = '中间外壳加深（新增高度由中间件承担）'
+    doc.FootPad.Length = FOOT_HEIGHT
     doc.ReadMe.Label = '上下盖均2.5mm且无加深围边；中层板、ESP32、Type-C和按钮同步上移4.28mm'
     validate(doc)
     close(doc.Body.Tip.Shape.BoundBox.ZMin, MIDDLE_BASE)
@@ -266,6 +269,13 @@ def validate_assembly(doc):
     assert connector_centers[0][0] < 0 < connector_centers[1][0]
     assert all(abs(center[1]-(pcb.BoundBox.YMin+pcb.BoundBox.YMax)/2) < 1e-6
         for center in connector_centers)
+    p = doc.DesignParameters
+    wall_y = p.OuterWidth.Value/2
+    close(p.ButtonOuterProjection.Value, BUTTON_PROJECTION)
+    close(doc.ButtonPlungerPositive.Shape.BoundBox.YMax-wall_y, BUTTON_PROJECTION)
+    close(-doc.ButtonPlungerNegative.Shape.BoundBox.YMin-wall_y, BUTTON_PROJECTION)
+    close(doc.RearShell.Shape.BoundBox.YMax-wall_y, FOOT_HEIGHT)
+    close(doc.RearShell.Shape.BoundBox.YMax-doc.ButtonPlungerPositive.Shape.BoundBox.YMax, .5)
     collisions = {}
     names = ('FrontBezel', 'RearShell', 'RemovableBottomCover', 'ESP32BoardAssembly',
              'HeaderPinsKeepout', 'CO2SensorPCB', 'CO2SensorCan', 'CO2SensorConnectors')
@@ -291,6 +301,8 @@ def validate_assembly(doc):
         co2_mount_pitch_xy_mm=[20, 18], connector_model_count=len(doc.CO2SensorConnectors.Shape.Solids),
         connector_model_arrangement='Left/right along long X axis; simplified placeholders',
         connector_centers_mm=connector_centers,
+        button_outer_projection_mm=BUTTON_PROJECTION, horizontal_foot_height_mm=FOOT_HEIGHT,
+        horizontal_button_ground_clearance_mm=.5,
         corner_mount_coaxiality='PASS', co2_mount_coaxiality='PASS',
         screen_lower_aperture_mm=[32.85, 17.89], screen_aperture_center_x_mm=-1.5675,
         screen_upper_aperture_mm=[35.946, 20.986], screen_upper_aperture_radius_mm=4.048,
@@ -323,6 +335,12 @@ def make_assembly(source, shapes, folder):
     doc.CO2SensorCan.Label = 'SCD41 朝外（表面内缩1mm）'
     doc.CO2SensorEnvelope.Label = 'CO2 横置倒装总成参考'
     p = doc.DesignParameters
+    for name, value in [('HorizontalFootHeight', FOOT_HEIGHT),
+        ('HorizontalSupportPlaneY', p.OuterWidth.Value/2+FOOT_HEIGHT),
+        ('OverallWidthIncludingFeet', p.OuterWidth.Value+FOOT_HEIGHT)]:
+        set_length(p, name, value)
+    from horizontal_supports import extend_hemispherical_buttons
+    extend_hemispherical_buttons(doc, projection=BUTTON_PROJECTION)
     for name in ('BoardLayerStart', 'PCBMountContactHeight', 'HeaderSlotCutBottomZ',
                  'HeaderSlotCutTopZ', 'ButtonCenterZ', 'PCBColumnReliefBottomZ',
                  'HorizontalFootFrontCenterZ', 'LowerLayerHeightIncrease',
@@ -341,9 +359,12 @@ def make_assembly(source, shapes, folder):
     p.Layout = ('2026-10-28统一盖板设计：前后基础板厚均2.5mm，后盖无加深围边。'
         '传感器横置倒装，薄膜表面内缩1mm；CO2 PCB安装面Z7.28mm，'
         'ESP32 PCB下表面到CO2 PCB上表面保持20mm。额外高度由中间外壳承担；'
-        'Type-C、按钮、中层板与ESP32同步上移4.28mm。实际插头和弯线空间尚待实物确认。')
+        'Type-C、按钮、中层板与ESP32同步上移4.28mm。'
+        '按钮突出1.5mm、侧脚高2mm，离桌间隙0.5mm。实际插头和弯线空间尚待实物确认。')
     stamp_screen_parameters(doc)
     report = validate_assembly(doc)
+    from apply_button_projection15 import export_button_print
+    report['button_print'] = export_button_print(doc, folder/'打印文件')
     path = folder/'装配检查_盖板2.5mm_中间壳加深.FCStd'
     doc.saveAs(str(path))
     App.closeDocument(doc.Name)
@@ -379,6 +400,7 @@ def main():
     for name, doc, stem in specs:
         outputs[name], reports[name] = export_native(doc, stage, stem)
     reports['assembly'] = make_assembly(assembly_source, outputs, stage)
+    reports['ButtonPlunger'] = reports['assembly'].pop('button_print')
     assert all(digest(p) == value for p, value in hashes.items())
     reports['source_files_unchanged'] = True
     (stage/'检查记录.json').write_text(json.dumps(reports, ensure_ascii=False, indent=2))
