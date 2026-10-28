@@ -26,7 +26,7 @@ PCB_CONTACT_Z = RECESS + PACKAGE_H
 UPPER_LIFT = PCB_CONTACT_Z - 3.0
 MIDDLE_BASE = COVER_T + .05
 MOUNTS = [(x, y) for x in (-10., 10.) for y in (-9., 9.)]
-CORNERS = [(x, y) for x in (-18.86, 18.86) for y in (-12.82, 12.82)]
+from shift_corner_mounts import CORNERS, apply_corner_positions, stamp_corner_parameters
 TOL = 1e-6
 BUTTON_PROJECTION = 1.5
 FOOT_HEIGHT = 2.0
@@ -138,6 +138,7 @@ def make_top(path):
         ('CenterY', 'WindowSection1.Constraints.CenterY')]:
         doc.WindowSection2.setExpression('Constraints.'+name, expression)
     doc.ReadMe.Label = '上盖平板厚2.5mm；屏幕下口不变；同心等宽外扩斜面、R0.4过渡和Ø5.1沉孔'
+    apply_corner_positions(doc, 'top')
     validate(doc)
     # The legacy split fillet's B-spline control-box extends below its trimmed
     # surface. Use the actual trimmed geometry, not the loose control-point box.
@@ -169,6 +170,7 @@ def make_middle(path):
     doc.OuterPad.Label = '中间外壳加深（新增高度由中间件承担）'
     doc.FootPad.Length = FOOT_HEIGHT
     doc.ReadMe.Label = '上下盖均2.5mm且无加深围边；中层板、ESP32、Type-C和按钮同步上移4.28mm'
+    apply_corner_positions(doc, 'middle')
     validate(doc)
     close(doc.Body.Tip.Shape.BoundBox.ZMin, MIDDLE_BASE)
     close(doc.Body.Tip.Shape.BoundBox.ZMax, old_top+UPPER_LIFT)
@@ -258,7 +260,7 @@ def validate_assembly(doc):
     close(pcb.BoundBox.ZMax, PCB_CONTACT_Z+1.2)
     close(doc.FrontBezel.Shape.optimalBoundingBox(False, False).ZLength, COVER_T, 1e-5)
     close(doc.RemovableBottomCover.Shape.BoundBox.ZMin, 0)
-    corners = sorted(CORNERS)
+    corners = sorted((round(x,5),round(y,5)) for x,y in CORNERS)
     for name, radius in [('FrontBezel', 1.45), ('RemovableBottomCover', 1.45), ('RearShell', 1.15)]:
         assert vertical_axes(doc.getObject(name).Shape, radius) == corners, name
     assert vertical_axes(doc.CO2SensorPCB.Shape, 1.4) == sorted(MOUNTS)
@@ -304,6 +306,8 @@ def validate_assembly(doc):
         button_outer_projection_mm=BUTTON_PROJECTION, horizontal_foot_height_mm=FOOT_HEIGHT,
         horizontal_button_ground_clearance_mm=.5,
         corner_mount_coaxiality='PASS', co2_mount_coaxiality='PASS',
+        corner_mount_centers_xy_mm=CORNERS,
+        corner_mount_diagonal_shift_mm=.3,
         screen_lower_aperture_mm=[32.85, 17.89], screen_aperture_center_x_mm=-1.5675,
         screen_upper_aperture_mm=[35.946, 20.986], screen_upper_aperture_radius_mm=4.048,
         screen_transition='Concentric equal-offset loft; lower aperture unchanged; R0.4 edge transition',
@@ -362,6 +366,7 @@ def make_assembly(source, shapes, folder):
         'Type-C、按钮、中层板与ESP32同步上移4.28mm。'
         '按钮突出1.5mm、侧脚高2mm，离桌间隙0.5mm。实际插头和弯线空间尚待实物确认。')
     stamp_screen_parameters(doc)
+    stamp_corner_parameters(doc)
     report = validate_assembly(doc)
     from apply_button_projection15 import export_button_print
     report['button_print'] = export_button_print(doc, folder/'打印文件')

@@ -27,8 +27,8 @@
   },
   "RearShell": {
     "native": "中间外壳_加深_草图编辑.FCStd",
-    "volume_mm3": 13021.218322521501,
-    "mesh_facets": 161228,
+    "volume_mm3": 12785.063102753029,
+    "mesh_facets": 161084,
     "mesh_closed": true,
     "mesh_components": 1,
     "mesh_non_manifold": false,
@@ -77,6 +77,25 @@
     "horizontal_button_ground_clearance_mm": 0.5,
     "corner_mount_coaxiality": "PASS",
     "co2_mount_coaxiality": "PASS",
+    "corner_mount_centers_xy_mm": [
+      [
+        -19.072132034355963,
+        -13.032132034355964
+      ],
+      [
+        -19.072132034355963,
+        13.032132034355964
+      ],
+      [
+        19.072132034355963,
+        -13.032132034355964
+      ],
+      [
+        19.072132034355963,
+        13.032132034355964
+      ]
+    ],
+    "corner_mount_diagonal_shift_mm": 0.3,
     "screen_lower_aperture_mm": [
       32.85,
       17.89

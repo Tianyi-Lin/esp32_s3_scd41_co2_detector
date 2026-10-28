@@ -1,0 +1,230 @@
+{
+  "diagonal_outward_shift_mm": 0.3,
+  "shift_per_axis_mm": 0.21213203435596423,
+  "old_centers_xy_mm": [
+    [
+      -18.86,
+      -12.82
+    ],
+    [
+      -18.86,
+      12.82
+    ],
+    [
+      18.86,
+      -12.82
+    ],
+    [
+      18.86,
+      12.82
+    ]
+  ],
+  "new_centers_xy_mm": [
+    [
+      -19.072132034355963,
+      -13.032132034355964
+    ],
+    [
+      -19.072132034355963,
+      13.032132034355964
+    ],
+    [
+      19.072132034355963,
+      -13.032132034355964
+    ],
+    [
+      19.072132034355963,
+      13.032132034355964
+    ]
+  ],
+  "parts": {
+    "RearShell": {
+      "corner_centers_xy_mm": [
+        [
+          -19.072132034355963,
+          -13.032132034355964
+        ],
+        [
+          -19.072132034355963,
+          13.032132034355964
+        ],
+        [
+          19.072132034355963,
+          -13.032132034355964
+        ],
+        [
+          19.072132034355963,
+          13.032132034355964
+        ]
+      ],
+      "counterbore_outer_rim_mm": 1.0689121858923352,
+      "exterior_dimensions_xy_mm": [
+        45.4,
+        33.9
+      ],
+      "outer_corner_radius_mm": 4,
+      "flat_count": 8,
+      "flat_angle_degrees": 45,
+      "flat_axis_offset_mm": 2.7818530470919227,
+      "minimum_flat_to_bore_wall_mm": 1.6318530470919228,
+      "minimum_flat_to_nominal_m25_wall_mm": 1.5318530470919227
+    },
+    "FrontBezel": {
+      "corner_centers_xy_mm": [
+        [
+          -19.072132034355963,
+          -13.032132034355964
+        ],
+        [
+          -19.072132034355963,
+          13.032132034355964
+        ],
+        [
+          19.072132034355963,
+          -13.032132034355964
+        ],
+        [
+          19.072132034355963,
+          13.032132034355964
+        ]
+      ],
+      "counterbore_outer_rim_mm": 1.0689121858923372,
+      "exterior_dimensions_xy_mm": [
+        45.4,
+        33.9
+      ],
+      "outer_corner_radius_mm": 4
+    },
+    "RemovableBottomCover": {
+      "corner_centers_xy_mm": [
+        [
+          -19.072132034355963,
+          -13.032132034355964
+        ],
+        [
+          -19.072132034355963,
+          13.032132034355964
+        ],
+        [
+          19.072132034355963,
+          -13.032132034355964
+        ],
+        [
+          19.072132034355963,
+          13.032132034355964
+        ]
+      ],
+      "counterbore_outer_rim_mm": 1.0689121858923352,
+      "exterior_dimensions_xy_mm": [
+        45.4,
+        33.9
+      ],
+      "outer_corner_radius_mm": 4
+    }
+  },
+  "electronics_and_buttons_and_feet_unchanged": true,
+  "appearance_preserved": true,
+  "outside_corner_regions_unchanged": true,
+  "source_files_unchanged": true,
+  "assembly_reopen": "PASS",
+  "assembly": {
+    "esp32_to_co2_pcb_gap_mm": 20.0,
+    "membrane_recess_mm": 1.0000010799999994,
+    "sensor_pcb_z_mm": [
+      7.28,
+      8.480000000000002
+    ],
+    "sensor_to_cover_min_clearance_mm": 1.4379954279097056,
+    "cover_base_thickness_mm": 2.5,
+    "front_thickness_mm": 2.5,
+    "back_skirt_height_mm": 0,
+    "upper_assembly_lift_mm": 4.28,
+    "middle_base_z_mm": 2.55,
+    "middle_top_z_mm": 33.53047878579244,
+    "middle_height_mm": 30.98047878579244,
+    "overall_thickness_mm": 36.03047878579247,
+    "co2_mount_pitch_xy_mm": [
+      20,
+      18
+    ],
+    "connector_model_count": 2,
+    "connector_model_arrangement": "Left/right along long X axis; simplified placeholders",
+    "connector_centers_mm": [
+      [
+        -10.850000000000003,
+        5.172705773891683e-16,
+        6.030000000000001
+      ],
+      [
+        10.850000000000003,
+        5.706146266204071e-16,
+        6.030000000000001
+      ]
+    ],
+    "button_outer_projection_mm": 1.5,
+    "horizontal_foot_height_mm": 2.0,
+    "horizontal_button_ground_clearance_mm": 0.5,
+    "corner_mount_coaxiality": "PASS",
+    "co2_mount_coaxiality": "PASS",
+    "corner_mount_centers_xy_mm": [
+      [
+        -19.072132034355963,
+        -13.032132034355964
+      ],
+      [
+        -19.072132034355963,
+        13.032132034355964
+      ],
+      [
+        19.072132034355963,
+        -13.032132034355964
+      ],
+      [
+        19.072132034355963,
+        13.032132034355964
+      ]
+    ],
+    "corner_mount_diagonal_shift_mm": 0.3,
+    "screen_lower_aperture_mm": [
+      32.85,
+      17.89
+    ],
+    "screen_aperture_center_x_mm": -1.5675,
+    "screen_upper_aperture_mm": [
+      35.946,
+      20.986
+    ],
+    "screen_upper_aperture_radius_mm": 4.048,
+    "screen_transition": "Concentric equal-offset loft; lower aperture unchanged; R0.4 edge transition",
+    "plugged_connector_and_wire_space_validated": false,
+    "collisions_mm3": {
+      "FrontBezel / RearShell": 0.0,
+      "FrontBezel / RemovableBottomCover": 0.0,
+      "FrontBezel / ESP32BoardAssembly": 0.0,
+      "FrontBezel / HeaderPinsKeepout": 0.0,
+      "FrontBezel / CO2SensorPCB": 0.0,
+      "FrontBezel / CO2SensorCan": 0.0,
+      "FrontBezel / CO2SensorConnectors": 0.0,
+      "RearShell / RemovableBottomCover": 0.0,
+      "RearShell / ESP32BoardAssembly": 0.0,
+      "RearShell / HeaderPinsKeepout": 0.0,
+      "RearShell / CO2SensorPCB": 0.0,
+      "RearShell / CO2SensorCan": 0.0,
+      "RearShell / CO2SensorConnectors": 0.0,
+      "RemovableBottomCover / ESP32BoardAssembly": 0.0,
+      "RemovableBottomCover / HeaderPinsKeepout": 0.0,
+      "RemovableBottomCover / CO2SensorPCB": 0.0,
+      "RemovableBottomCover / CO2SensorCan": 0.0,
+      "RemovableBottomCover / CO2SensorConnectors": 0.0,
+      "ESP32BoardAssembly / CO2SensorPCB": 0.0,
+      "ESP32BoardAssembly / CO2SensorCan": 0.0,
+      "ESP32BoardAssembly / CO2SensorConnectors": 0.0,
+      "HeaderPinsKeepout / CO2SensorPCB": 0.0,
+      "HeaderPinsKeepout / CO2SensorCan": 0.0,
+      "HeaderPinsKeepout / CO2SensorConnectors": 0.0,
+      "CO2SensorPCB / CO2SensorCan": 0.0,
+      "CO2SensorPCB / CO2SensorConnectors": 0.0,
+      "CO2SensorCan / CO2SensorConnectors": 0.0
+    }
+  }
+}
