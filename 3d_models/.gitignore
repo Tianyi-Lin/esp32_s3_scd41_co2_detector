@@ -2,3 +2,6 @@
 *.FCBak
 *.FCStd1
 *.FCStd.*
+__pycache__/
+*.pyc
+.cad-recovery/

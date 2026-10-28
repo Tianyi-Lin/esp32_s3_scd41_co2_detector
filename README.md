@@ -45,6 +45,25 @@ MQTT and HTTPS are intentionally left for a later step. Home Assistant can
 read the current measurements from the local HTTP JSON endpoint at `/api/data`
 without requiring an MQTT broker.
 
+## Display orientation
+
+The LCD uses landscape rotation `3`, which is 180 degrees from the original
+rotation `1`. The value is defined by `LCD_ROTATION` in
+[`src/board_config.h`](src/board_config.h) and used when the display is initialized.
+
+## 3D enclosure models and source
+
+[`3d_models/`](3d_models/) contains the saved FreeCAD projects, editable sketch
+and feature models, STEP/STL exports, assembly checks, and exploded views.
+[`3d_models/scripts/`](3d_models/scripts/) contains the Python modeling source,
+geometry helpers, historical repair/check scripts, and a FreeCAD macro.
+
+See the [model version guide](3d_models/README.md) before editing or printing.
+The outward-facing SCD41 rear cover is an **unfinished preview**: enclosure
+thickness and actual cable/connector clearance still need review. Modeling
+scripts retain their original local paths and may overwrite models; read the
+[script notes](3d_models/scripts/README.md) and work on copies before running them.
+
 ## SCD41 wiring
 
 Disconnect USB power before changing wires. Hold the Waveshare board with its

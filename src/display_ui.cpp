@@ -45,7 +45,7 @@ constexpr uint32_t kHistoryMaxIntervalMs = 60000;
 bool DisplayUi::begin() {
     bus_ = new Arduino_HWSPI(LCD_DC_PIN, LCD_CS_PIN, LCD_SCLK_PIN,
                              LCD_MOSI_PIN);
-    panel_ = new Arduino_ST7789(bus_, LCD_RST_PIN, 1, true, LCD_WIDTH,
+    panel_ = new Arduino_ST7789(bus_, LCD_RST_PIN, LCD_ROTATION, true, LCD_WIDTH,
                                LCD_HEIGHT, LCD_COLUMN_OFFSET, 0,
                                LCD_COLUMN_OFFSET, 0);
     if (bus_ == nullptr || panel_ == nullptr || !panel_->begin(80000000)) {

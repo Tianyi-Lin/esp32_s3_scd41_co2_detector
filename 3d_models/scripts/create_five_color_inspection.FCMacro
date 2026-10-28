@@ -1,0 +1,65 @@
+"""Style a standalone compact assembly copy without touching the originals."""
+import FreeCAD as App
+import FreeCADGui as Gui
+
+DEST = "/Users/bytedance/Downloads/ESP32-S3-LCD-1.47B_20260204 (1)/ESP32-S3-LCD-1.47B_紧凑装配_五色半透明检查.FCStd"
+doc = App.openDocument(DEST)
+App.setActiveDocument(doc.Name)
+before = {o.Name: (o.Shape, o.Placement.toMatrix().A)
+          for o in doc.Objects if "Shape" in o.PropertiesList}
+
+styles = {
+    "FrontBezel": ((0.10, 0.55, 0.95), "01 上盖｜蓝色"),
+    "RemovableBottomCover": ((0.65, 0.30, 0.90), "02 下盖｜紫色"),
+    "RearShell": ((1.00, 0.65, 0.12), "03 中间外壳｜橙色"),
+    "ButtonPlungerPositive": ((1.00, 0.65, 0.12), "中间外壳附属按钮 1｜橙色"),
+    "ButtonPlungerNegative": ((1.00, 0.65, 0.12), "中间外壳附属按钮 2｜橙色"),
+    "ESP32BoardAssembly": ((0.10, 0.80, 0.30), "04 ESP32 总成｜绿色"),
+    "HeaderPinsKeepout": ((0.10, 0.80, 0.30), "ESP32 排针参考｜绿色"),
+    "CO2SensorPCB": ((0.95, 0.18, 0.23), "05 CO2 模块 PCB｜红色"),
+    "CO2SensorCan": ((0.95, 0.18, 0.23), "CO2 SCD41 传感器本体｜红色"),
+    "CO2SensorConnectors": ((0.95, 0.18, 0.23), "CO2 模块插座｜红色"),
+}
+for name, (color, label) in styles.items():
+    obj = doc.getObject(name)
+    assert obj is not None, name
+    obj.Label = label
+    view = obj.ViewObject
+    view.ShapeColor = color
+    view.DiffuseColor = [color]
+    view.Transparency = 60
+    view.LineColor = tuple(c * 0.28 for c in color)
+    view.LineWidth = 1.0
+    view.DisplayMode = "Flat Lines"
+    view.Visibility = True
+
+# This is a duplicate collision aggregate, not an additional physical part.
+doc.CO2SensorEnvelope.ViewObject.Visibility = False
+doc.DesignParameters.ViewObject.Visibility = False
+doc.PrintableParts.ViewObject.Visibility = True
+doc.Assembly.ViewObject.Visibility = True
+info = doc.addObject("App::FeaturePython", "ColorInspectionInfo")
+info.Label = "五色半透明检查说明（独立文件）"
+info.addProperty("App::PropertyString", "Legend", "Inspection")
+info.Legend = "上盖蓝色；下盖紫色；中间外壳及按钮橙色；ESP32与排针绿色；CO2模块红色。"
+info.addProperty("App::PropertyInteger", "TransparencyPercent", "Inspection")
+info.TransparencyPercent = 60
+info.addProperty("App::PropertyString", "Notes", "Inspection")
+info.Notes = "独立的紧凑装配检查副本，保持主装配全部几何和装配位置；无爆炸偏移；没有链接到原装配文件。"
+info.ViewObject.Visibility = False
+doc.Label = "ESP32-S3-LCD-1.47B_紧凑装配_五色半透明检查"
+doc.recompute()
+for name, (shape, placement) in before.items():
+    obj = doc.getObject(name)
+    assert obj.Shape.isSame(shape), ("Geometry changed", name)
+    assert obj.Placement.toMatrix().A == placement, ("Placement changed", name)
+for name, (color, label) in styles.items():
+    view = doc.getObject(name).ViewObject
+    assert view.Transparency == 60, name
+    assert view.Visibility, name
+    assert max(abs(a-b) for a,b in zip(view.ShapeColor, color)) < 0.005, name
+assert not doc.CO2SensorEnvelope.ViewObject.Visibility
+Gui.activeDocument().activeView().viewAxonometric()
+Gui.activeDocument().activeView().fitAll()
+doc.save()
+App.Console.PrintMessage("FIVE_COLOR_INSPECTION_SAVED " + DEST + "\n")

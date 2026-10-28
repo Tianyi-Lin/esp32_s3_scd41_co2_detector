@@ -10,6 +10,8 @@ constexpr int LCD_BACKLIGHT_PIN = 46;
 constexpr int LCD_WIDTH = 172;
 constexpr int LCD_HEIGHT = 320;
 constexpr int LCD_COLUMN_OFFSET = 34;
+// Landscape, rotated 180 degrees from the original orientation (1).
+constexpr uint8_t LCD_ROTATION = 3;
 constexpr uint8_t LCD_BACKLIGHT_PWM_CHANNEL = 0;
 constexpr uint32_t LCD_BACKLIGHT_PWM_HZ = 5000;
 constexpr uint8_t LCD_DAY_BRIGHTNESS = 255;
