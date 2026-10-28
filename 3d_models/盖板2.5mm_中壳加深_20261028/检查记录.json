@@ -59,6 +59,9 @@
       18
     ],
     "connector_model_count": 2,
+    "connector_model_arrangement": "Left/right along long X axis; simplified placeholders",
+    "connector_centers_mm": [[-10.85, 0, 6.03], [10.85, 0, 6.03]],
+    "connector_layout_check": "接线插座布局检查.json",
     "corner_mount_coaxiality": "PASS",
     "co2_mount_coaxiality": "PASS",
     "screen_lower_aperture_mm": [

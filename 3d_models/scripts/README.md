@@ -8,6 +8,7 @@
 | --- | --- |
 | `redesign_uniform_covers.py` | 当前候选版入口：前后平板均2.5mm、后盖无外围围边，中间壳承担新增高度，维持1mm内缩与20mm板间距；导出独立工程、装配及经过验证的STEP/STL。 |
 | `style_uniform_assembly.py` | 给当前候选版的无 GUI 信息装配添加外观：三件外壳50%半透明、电子器件不透明；校验原文档和几何数据逐字节不变。标准 Python 3 可运行。 |
+| `fix_co2_connector_layout.py` | 将当前 CO₂ PCB 的两个简化插座改到长边方向左右两端；不旋转 PCB、不改变孔位和打印件；保留原装配显示外观并检查碰撞，输出到独立暂存目录。 |
 | `design_inverted_scd41_cover.py` | 最新倒装后盖预览：传感器朝外、表面内缩约 1 mm，导出独立后盖及倒装装配。方案尚未定稿。 |
 | `redesign_bottom_sensor_landscape.py` | 未倒装的横置后盖：长边平行外壳长边，安装孔距 X20 / Y18。 |
 | `create_compact_stacked_enclosure.py` | 紧凑双层外壳的整机生成入口，调用本目录多个几何辅助模块。 |

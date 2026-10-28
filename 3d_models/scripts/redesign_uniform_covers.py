@@ -260,6 +260,12 @@ def validate_assembly(doc):
         assert vertical_axes(doc.getObject(name).Shape, radius) == corners, name
     assert vertical_axes(doc.CO2SensorPCB.Shape, 1.4) == sorted(MOUNTS)
     assert vertical_axes(doc.RemovableBottomCover.Shape, 1.4) == sorted(MOUNTS)
+    connector_centers = sorted((s.CenterOfMass.x, s.CenterOfMass.y, s.CenterOfMass.z)
+        for s in doc.CO2SensorConnectors.Shape.Solids)
+    assert len(connector_centers) == 2
+    assert connector_centers[0][0] < 0 < connector_centers[1][0]
+    assert all(abs(center[1]-(pcb.BoundBox.YMin+pcb.BoundBox.YMax)/2) < 1e-6
+        for center in connector_centers)
     collisions = {}
     names = ('FrontBezel', 'RearShell', 'RemovableBottomCover', 'ESP32BoardAssembly',
              'HeaderPinsKeepout', 'CO2SensorPCB', 'CO2SensorCan', 'CO2SensorConnectors')
@@ -283,6 +289,8 @@ def validate_assembly(doc):
         middle_height_mm=doc.RearShell.Shape.BoundBox.ZLength,
         overall_thickness_mm=doc.FrontBezel.Shape.BoundBox.ZMax,
         co2_mount_pitch_xy_mm=[20, 18], connector_model_count=len(doc.CO2SensorConnectors.Shape.Solids),
+        connector_model_arrangement='Left/right along long X axis; simplified placeholders',
+        connector_centers_mm=connector_centers,
         corner_mount_coaxiality='PASS', co2_mount_coaxiality='PASS',
         screen_lower_aperture_mm=[32.85, 17.89], screen_aperture_center_x_mm=-1.5675,
         screen_upper_aperture_mm=[35.946, 20.986], screen_upper_aperture_radius_mm=4.048,
@@ -300,6 +308,10 @@ def make_assembly(source, shapes, folder):
     for name in ('CO2SensorPCB', 'CO2SensorCan', 'CO2SensorConnectors'):
         obj = doc.getObject(name)
         obj.Placement = flip.multiply(obj.Placement)
+    # The module is already landscape. Only its two socket placeholders belong
+    # at the left/right ends; rotating the whole PCB would break the hole layout.
+    from fix_co2_connector_layout import correct_connectors
+    correct_connectors(doc)
     assign_shape(doc.CO2SensorEnvelope, Part.makeCompound([
         doc.getObject(n).Shape for n in ('CO2SensorPCB', 'CO2SensorCan', 'CO2SensorConnectors')]))
     for name, shape in shapes.items():
