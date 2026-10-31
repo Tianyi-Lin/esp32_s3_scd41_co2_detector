@@ -203,7 +203,7 @@ void WebPortal::handleData() {
     json += ",\"night_active\":" + String(gNightMode.active ? "true" : "false");
     json += ",\"night_manual\":" + String(gNightMode.manualOverride ? "true" : "false");
     json += ",\"time_valid\":" + String(gNightMode.timeValid ? "true" : "false");
-    char localTime[6];
+    char localTime[12];
     snprintf(localTime, sizeof(localTime), "%02u:%02u",
              gNightMode.localMinute / 60, gNightMode.localMinute % 60);
     json += ",\"local_time\":\"" + String(localTime) + "\"}";

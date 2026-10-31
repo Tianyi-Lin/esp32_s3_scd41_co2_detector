@@ -69,6 +69,9 @@ scripts retain their original local paths and may overwrite models; read the
 
 ## SCD41 wiring
 
+See [CHANGELOG.md](CHANGELOG.md) for wiring and framework compatibility changes
+and the build/upload validation record.
+
 Disconnect USB power before changing wires. Hold the Waveshare board with its
 USB-C connector at the top and use the labeled pins on the left header:
 
@@ -76,8 +79,8 @@ USB-C connector at the top and use the labeled pins on the left header:
 |---|---|
 | VCC / VIN | 3V3(OUT) |
 | GND | GND |
-| SDA | GP4 |
-| SCL | GP5 |
+| SDA | GP5 |
+| SCL | GP6 |
 
 Use **3V3(OUT)**, not 5V and not VBAT. The SCD41 I2C address is `0x62`.
 

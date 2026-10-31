@@ -38,6 +38,6 @@ constexpr int BATTERY_ADC_PIN = 1;
 constexpr float BATTERY_ADC_DIVIDER = 3.0f;
 
 // External SCD41 bus on the exposed left-side header.
-constexpr int SCD41_SDA_PIN = 4;
-constexpr int SCD41_SCL_PIN = 5;
+constexpr int SCD41_SDA_PIN = 5;
+constexpr int SCD41_SCL_PIN = 6;
 constexpr uint32_t SCD41_I2C_FREQUENCY_HZ = 100000;

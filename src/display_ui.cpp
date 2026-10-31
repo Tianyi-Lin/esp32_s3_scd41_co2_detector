@@ -5,6 +5,7 @@
 #include "board_config.h"
 
 #include <Arduino.h>
+#include <esp_arduino_version.h>
 
 namespace {
 constexpr uint16_t rgb565(uint8_t r, uint8_t g, uint8_t b) {
@@ -35,6 +36,14 @@ constexpr uint16_t kRed = rgb565(kAirPoorColor.r, kAirPoorColor.g,
 constexpr uint16_t kPurple = rgb565(kSensorFaultColor.r,
                                     kSensorFaultColor.g,
                                     kSensorFaultColor.b);
+void writeBacklight(uint8_t brightness) {
+#if ESP_ARDUINO_VERSION_MAJOR >= 3
+    ledcWrite(LCD_BACKLIGHT_PIN, brightness);
+#else
+    ledcWrite(LCD_BACKLIGHT_PWM_CHANNEL, brightness);
+#endif
+}
+
 constexpr uint32_t kRefreshMs = 1000;
 constexpr uint32_t kButtonDebounceMs = 35;
 constexpr uint32_t kDoubleClickGapMs = 350;
@@ -72,9 +81,16 @@ bool DisplayUi::begin() {
     }
 
     pinMode(LCD_BACKLIGHT_PIN, OUTPUT);
+#if ESP_ARDUINO_VERSION_MAJOR >= 3
+    if (!ledcAttach(LCD_BACKLIGHT_PIN, LCD_BACKLIGHT_PWM_HZ, 8)) {
+        Serial.println("[LCD] Backlight PWM initialization failed.");
+        return false;
+    }
+#else
     ledcSetup(LCD_BACKLIGHT_PWM_CHANNEL, LCD_BACKLIGHT_PWM_HZ, 8);
     ledcAttachPin(LCD_BACKLIGHT_PIN, LCD_BACKLIGHT_PWM_CHANNEL);
-    ledcWrite(LCD_BACKLIGHT_PWM_CHANNEL, LCD_DAY_BRIGHTNESS);
+#endif
+    writeBacklight(LCD_DAY_BRIGHTNESS);
     backlightInitialized_ = true;
     pinMode(PAGE_BUTTON_PIN, INPUT_PULLUP);
     pinMode(BATTERY_ADC_PIN, INPUT);
@@ -154,7 +170,7 @@ void DisplayUi::applyBacklightMode() {
         return;
     }
     backlightNightActive_ = gNightMode.active;
-    ledcWrite(LCD_BACKLIGHT_PWM_CHANNEL,
+    writeBacklight(
               backlightNightActive_ ? LCD_NIGHT_BRIGHTNESS
                                     : LCD_DAY_BRIGHTNESS);
     Serial.printf("[LCD] Backlight %s.\n",
@@ -383,7 +399,7 @@ void DisplayUi::drawTopBar(const char* title, uint16_t accent) {
     gfx_->setCursor(33, 7);
     gfx_->print(title);
 
-    char clockText[6] = "--:--";
+    char clockText[12] = "--:--";
     if (gNightMode.timeValid) {
         snprintf(clockText, sizeof(clockText), "%02u:%02u",
                  gNightMode.localMinute / 60,
@@ -457,7 +473,7 @@ void DisplayUi::drawHome() {
         gfx_->setTextSize(1);
         gfx_->setTextColor(kMuted);
         gfx_->setCursor(22, 135);
-        gfx_->print("CHECK GP4 / GP5");
+        gfx_->print("CHECK GP5 / GP6");
     } else if (!gSensor.ready) {
         gfx_->setTextSize(3);
         gfx_->setTextColor(kBlue);

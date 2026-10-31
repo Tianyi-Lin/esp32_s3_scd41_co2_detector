@@ -3,9 +3,20 @@
 #include "air_quality.h"
 #include "app_state.h"
 #include "board_config.h"
+#include <esp_arduino_version.h>
 
 #include <Arduino.h>
 #include <esp32-hal-rgb-led.h>
+
+namespace {
+void writePixel(uint8_t pin, uint8_t red, uint8_t green, uint8_t blue) {
+#if ESP_ARDUINO_VERSION_MAJOR >= 3
+    rgbLedWrite(pin, red, green, blue);
+#else
+    neopixelWrite(pin, red, green, blue);
+#endif
+}
+}  // namespace
 
 void StatusLed::begin() {
     // A visible power-on test makes wiring/driver faults unambiguous. After
@@ -82,9 +93,9 @@ void StatusLed::writeColor(const Rgb& color) const {
     // neopixelWrite() takes logical RGB values.  The optional swap exists only
     // for board variants whose fitted pixel has a non-standard channel order.
     if (RGB_LED_SWAP_RED_GREEN) {
-        neopixelWrite(RGB_LED_PIN, green, red, blue);
+        writePixel(RGB_LED_PIN, green, red, blue);
     } else {
-        neopixelWrite(RGB_LED_PIN, red, green, blue);
+        writePixel(RGB_LED_PIN, red, green, blue);
     }
 }
 
